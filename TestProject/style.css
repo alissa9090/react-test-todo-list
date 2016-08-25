@@ -19,3 +19,16 @@ body{
   float: right;
   margin-bottom: 5px;
 }
+.task{
+  width: 500px;
+}
+.task label{
+  margin: 5px;
+}
+.task .remove{
+  display: none;
+}
+.task:hover .remove{
+  display: inline;
+  cursor: pointer;
+}

@@ -1,14 +1,14 @@
 import { observable } from "mobx"
 
-class Task {  
+class Task {
   userId = observable()
   id = observable()
   title = observable()
   completed = observable()
 
   constructor(userId, id, title, completed){
-    this.userId = userId
-    this.id = id
+    this.userId = parseInt(userId)
+    this.id = parseInt(id)
     this.title = title
     this.completed = completed
   }

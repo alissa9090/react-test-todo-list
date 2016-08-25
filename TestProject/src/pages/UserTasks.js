@@ -35,16 +35,36 @@ class UserTasks extends React.Component {
   //   this.userServerRequest.abort();
   //   this.tasksServerRequest.abort();
   // }
+  createTask(e){
+    if(e.keyCode === 13){
+      taskStore.createTask(this.props.params.userId, e.target.value, false)
+      e.target.value = ""
+    }
+  }
+  removeTask(task, e){
+    e.preventDefault();
+    taskStore.removeTask(task)
+  }
+  toogleComplete(task){
+    task.completed = !task.completed
+  }
   render(){
     const userId = parseInt(this.props.params.userId)
     const user = userStore.getUserById(userId)
-    const filteredTasks = taskStore.getByUserId(userId)
+    taskStore.userId = userId
+    const filteredTasks = taskStore.tasksFilteredByUser
     const userRendered = user ? <User key={user.id} showDetails={true} user={user} /> : ""
     return(
       <div className="user-tasks">
         <Link to="/" className="btn btn-primary">Choose a new user</Link>
         {userRendered}
-        {filteredTasks.map(todo => <Task key={todo.id} {...todo}/>)}
+        <input type="text" className="create-task" onKeyUp={this.createTask.bind(this)}></input>
+        {filteredTasks.map(task => <Task
+          key={task.id}
+          onComplete={this.toogleComplete.bind(this, task)}
+          onDelete={this.removeTask.bind(this, task)}
+          completed={task.completed}
+          {...task} /> )}
       </div>
     )
   }
