@@ -7,10 +7,10 @@ class Task {
   completed = observable()
 
   constructor(userId, id, title, completed){
-    this.userId = parseInt(userId)
-    this.id = parseInt(id)
-    this.title = title
-    this.completed = completed
+    this.userId.set(parseInt(userId))
+    this.id.set(parseInt(id))
+    this.title.set(title)
+    this.completed.set(completed)
   }
 }
 

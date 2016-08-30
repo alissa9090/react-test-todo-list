@@ -1,39 +1,36 @@
 import React from 'react';
-import {Link} from 'react-router';
+import { Link, withRouter } from 'react-router';
 import User from '../components/User';
-import userStore from '../store/UserStore';
+
 import { observer } from 'mobx-react';
 
 @observer
 class UserList extends React.Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     users: []
-  //   }
-  // }
-  // componentDidMount() {
-  //   let sorce = "https://jsonplaceholder.typicode.com/users";
-  //   this.serverRequest = $.get(sorce, function (result) {
-  //     this.setState({
-  //       users: result
-  //     });
-  //   }.bind(this));
-  // }
-  // componentWillUnmount() {
-  //   this.serverRequest.abort();
-  // }
+  removeUser(user, e){
+    e.preventDefault();
+    userStore.removeUser(user)
+  }
+  goToTasks(userId, e){
+    e.preventDefault();
+    this.props.router.push(`userTasks/${userId}`)
+  }
   render(){
+    if(userStore.isLoading.get()){
+      console.log("loading")
+      return null
+    }
     return (
       <div className="user-list">
         <h2>Choose a user</h2>
-        {userStore.users.map(user=> (
-          <Link to={`userTasks/${user.id}`} key={user.id}>
-            <User user={user} />
-          </Link>))}
+        <Link to="updateUser" className="btn btn-primary">Create new User</Link>
+          {userStore.users.map(user => <User
+            key={user.id.get()}
+            user={user}
+            onDelete={this.removeUser.bind(this, user)}
+            onClick={this.goToTasks.bind(this, user.id.get())}/> )}
       </div>
     )
   }
 }
 
-export default UserList
+export default withRouter(UserList)

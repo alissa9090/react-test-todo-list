@@ -1,13 +1,19 @@
 import React from 'react';
 
 class Task extends React.Component {
+  toogleComplete(e){
+    this.props.task.completed.set(!this.props.task.completed.get())
+  }
   render(){
+    const task = this.props.task
     return (
       <div className="task">
-        <input type="checkbox" defaultChecked={this.props.completed}
-          value={this.props.completed}
-          onChange={this.props.onComplete}/>
-        <label>{this.props.title}</label>
+        <input className="completed"
+          type="checkbox"
+          defaultChecked={task.completed.get()}
+          value={task.completed.get()}
+          onChange={this.toogleComplete.bind(this)}/>
+        <label className="title">{task.title.get()}</label>
         <img className="remove"
           src="http://findicons.com/files/icons/2139/uidesign/16/delete.png"
           onClick={this.props.onDelete} />
@@ -17,10 +23,7 @@ class Task extends React.Component {
 }
 
 Task.propTypes = {
-  id: React.PropTypes.number.isRequired,
-  title: React.PropTypes.string.isRequired,
-  completed: React.PropTypes.bool.isRequired,
-  onComplete: React.PropTypes.func.isRequired,
+  task: React.PropTypes.object.isRequired,
   onDelete: React.PropTypes.func.isRequired
 }
 

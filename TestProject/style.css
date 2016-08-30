@@ -2,12 +2,32 @@ body{
   margin: 10;
   padding: 0;
 }
-.user-container {
+.user-container{
+  width: 700px;
+  height: 325px;
+  clear: both;
+}
+.user-container .jumbotron{
   width: 500px;
   text-align: center;
+  float: left;
 }
-.user-list .user-container:hover{
+.user-list .user-container .jumbotron:hover{
   background-color: #EEEEF2;
+  cursor: pointer;
+}
+.user-list .user-container .edit, .user-list .user-container .remove{
+  display: none;
+}
+.user-list .user-container:hover .edit, .user-list .user-container:hover .remove{
+  display: block;
+}
+.user-container .edit{
+  float: right;
+  margin-bottom: 65px;
+}
+.user-container .remove{
+  float: right;
 }
 .hidden{
   display: none;
@@ -22,8 +42,11 @@ body{
 .task{
   width: 500px;
 }
-.task label{
+.task .title{
   margin: 5px;
+}
+.task .completed{
+  cursor: pointer;
 }
 .task .remove{
   display: none;
@@ -31,4 +54,17 @@ body{
 .task:hover .remove{
   display: inline;
   cursor: pointer;
+}
+.user-tasks .btn, .user-list .btn{
+  margin-bottom: 5px;
+}
+.clearFloats{
+  clear: both;
+}
+.user-form .btn{
+  width: 80px;
+  margin-right: 10px;
+}
+.user-tasks .create-task{
+  margin-bottom: 10px;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 class User extends React.Component {
   constructor(){
@@ -17,13 +18,24 @@ class User extends React.Component {
   render(){
     const user = this.props.user
     return (
-      <div className="user-container jumbotron">
-        <div className="user">
-          <h3>{user.name}</h3>
-          <img src={user.photoUrl}/>
-          <h4>{user.company.name}</h4>
-          {this.props.showDetails ? this.renderDetails() : ""}
+      <div>
+        <div className="user-container">
+          <div className="jumbotron" onClick={this.props.onClick}>
+            <div className="user">
+              <h3>{user.name.get()}</h3>
+              <img src={user.photoUrl.get()}/>
+              <h4>{user.company.name.get()}</h4>
+              {this.props.showDetails ? this.renderDetails() : ""}
+            </div>
+          </div>
+          <Link to={`updateUser/${user.id.get()}`} className="edit">
+            <img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/edit_property.png"/>
+          </Link>
+          <Link to="/" className="remove" onClick={this.props.onDelete}>
+            <img src="https://cdn1.iconfinder.com/data/icons/toolbar-signs/512/trash-128.png"/>
+          </Link>
         </div>
+        <div className="clearFloats"></div>
       </div>
     )
   }
@@ -40,29 +52,29 @@ class User extends React.Component {
           <div className="form-horizontal">
             <div className="form-group">
               <label className="col-lg-2 control-label">Name:</label>
-              <div className="col-lg-10">{user.name}</div>
+              <div className="col-lg-10">{user.name.get()}</div>
             </div>
             <div className="form-group">
               <label className="col-lg-2 control-label">Email:</label>
-              <div className="col-lg-10">{user.email}</div>
+              <div className="col-lg-10">{user.email.get()}</div>
             </div>
             <div className="form-group">
               <label className="col-lg-2 control-label">Address:</label>
               <div className="col-lg-10">
-                {user.address.street} {user.address.suite}, {user.address.zipcode} {user.address.city}
+                {user.address.street.get()} {user.address.suite.get()}, {user.address.zipcode.get()} {user.address.city.get()}
               </div>
           </div>
             <div className="form-group">
               <label className="col-lg-2 control-label">Phone:</label>
-              <div className="col-lg-10">{user.phone}</div>
+              <div className="col-lg-10">{user.phone.get()}</div>
             </div>
             <div className="form-group">
               <label className="col-lg-2 control-label">Website:</label>
-              <div className="col-lg-10">{user.website}</div>
+              <div className="col-lg-10">{user.website.get()}</div>
             </div>
             <div className="form-group">
               <label className="col-lg-2 control-label">Company:</label>
-              <div className="col-lg-10">{user.company.name}</div>
+              <div className="col-lg-10">{user.company.name.get()}</div>
             </div>
           </div>
           <a href="#"
@@ -78,11 +90,14 @@ class User extends React.Component {
 
 User.propTypes = {
   user: React.PropTypes.object.isRequired,
+  onDelete: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func,
   showDetails: React.PropTypes.bool
 }
 
 User.defaultProps = {
-  showDetails: false
+  showDetails: false,
+  onClick: ()=>{}
 }
 
 export default User

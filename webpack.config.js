@@ -20,8 +20,11 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
+          presets: ['es2015', 'react', 'stage-1', "stage-0"],
+          plugins: ['react-html-attrs',
+            'transform-class-properties',
+            'transform-decorators-legacy',
+            'transform-decorators']
         }
       }
     ]

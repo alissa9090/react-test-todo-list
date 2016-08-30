@@ -1,12 +1,12 @@
 import { observable } from "mobx"
 
 class Geo {
-  lat = observable()
-  lng = observable()
+  lat = observable("")
+  lng = observable("")
 
   constructor(lat, lng){
-    this.lat = lat
-    this.lng = lng
+    this.lat.set(lat)
+    this.lng.set(lng)
   }
 }
 

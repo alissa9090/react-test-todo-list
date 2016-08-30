@@ -1,4 +1,4 @@
-import { observable, computed } from "mobx"
+import { observable } from "mobx"
 import User from "./entities/User"
 import Address from "./entities/Address"
 import Geo from "./entities/Geo"
@@ -6,20 +6,27 @@ import Company from "./entities/Company"
 
 class UserStore {
   isLoading = observable(true);
-  users = observable([])
+  users = observable([]);
+  nextId = 0
+
   constructor() {
     this.loadUsers();
   }
   loadUsers() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     const source = "https://jsonplaceholder.typicode.com/users"
     $.get(source, function (result) {
-      result.forEach(json => this.updateUsersFromServer(json));
-      this.isLoading = false;
+      result.forEach(json => this.createUserFromJson(json));
+      if(this.users.length === 0){
+        this.nextId = 1
+      } else {
+        this.nextId = this.users[this.users.length - 1].id.get() + 1
+      }
+      this.isLoading.set(false);
     }.bind(this));
   }
-  updateUsersFromServer(json) {
-    let user = this.users.find(user => user.id === json.id);
+  createUserFromJson(json) {
+    let user = this.users.find(user => user.id.get() === json.id);
     if (!user) {
       user = new User(
         json.id,
@@ -43,17 +50,48 @@ class UserStore {
       this.users.push(user);
     }
   }
-  createUser(id, name, username, email, address, phone, website, company) {
-    var user = new User(id, name, username, email, address, phone, website, company);
-    this.users.push(user);
-    return user;
+  getNewUser(){
+    let user = new User(
+      0,
+      "",
+      "",
+      "",
+      new Address(
+        "",
+        "",
+        "",
+        "",
+        new Geo(
+          "",
+          "")),
+      "",
+      "",
+      new Company(
+        "",
+        "",
+        ""));
+    return user
+  }
+  createUser(name, username, email, address, phone, website, company) {
+    const id = this.getNextId()
+    var user = new User(id, name, username, email, address, phone, website, company)
+    return this.addUser(user)
+  }
+  addUser(user) {
+    if(user.id.get() <= 0){
+      user.id.set(this.getNextId())
+    }
+    this.users.push(user)
+    return user
   }
   removeUser(user) {
-    this.users.splice(this.users.indexOf(user), 1);
+    this.users.splice(this.users.indexOf(user), 1)
   }
-  getUserById(id) {
-    const users = this.users.filter(user => user.id === id)
-    return users.length > 0 ? users[0] : null
+  getNextId(){
+    return this.nextId++
+  }
+  getById(id) {
+    return this.users.find(user => user.id.get() === id)
   }
 }
 
