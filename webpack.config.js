@@ -6,7 +6,7 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   entry: './src/main.js',
   output: {
-    path: __dirname + '/',
+    path: __dirname + '/build/',
     filename: 'index.js'
   },
   devServer: {
