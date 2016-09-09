@@ -27,6 +27,7 @@ It’ll open the app in your browser.
 ### App
 
 * [React](http://facebook.github.io/react/).
+* [mobx-react] (https://github.com/mobxjs/mobx-react/).
 
 ### Styles
 
@@ -34,8 +35,6 @@ It’ll open the app in your browser.
 
 ### Build
 
-* [Gulp](http://gulpjs.com/).
-* [Bower](http://bower.io/).
 * [Webpack](http://webpack.github.io/).
 * [Babel](http://babeljs.io/) (as a [Webpack loader](https://github.com/babel/babel-loader)) — ES6/JSX trasformation.
 
