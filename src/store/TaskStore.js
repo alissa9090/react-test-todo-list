@@ -16,15 +16,19 @@ class TaskStore {
   loadTasks() {
     this.isLoading.set(true)
     const source = "https://jsonplaceholder.typicode.com/todos"
-    $.get(source, function (result) {
-      result.forEach(json => this.createTaskFromJson(json))
-      if(this.tasks.length === 0){
-        this.nextId = 1
-      } else {
-        this.nextId = this.tasks[this.tasks.length - 1].id.get() + 1
-      }
-      this.isLoading.set(false)
-    }.bind(this));
+    fetch(source)
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(result) {
+        result.forEach(json => this.createTaskFromJson(json))
+        if(this.tasks.length === 0){
+          this.nextId = 1
+        } else {
+          this.nextId = this.tasks[this.tasks.length - 1].id.get() + 1
+        }
+        this.isLoading.set(false)
+      }.bind(this))
   }
   createTaskFromJson(json) {
     let task = this.tasks.find(task => task.id.get() === json.id);

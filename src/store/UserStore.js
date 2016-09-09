@@ -3,6 +3,7 @@ import User from "./entities/User"
 import Address from "./entities/Address"
 import Geo from "./entities/Geo"
 import Company from "./entities/Company"
+import fetch from "isomorphic-fetch"
 
 class UserStore {
   isLoading = observable(true);
@@ -15,15 +16,19 @@ class UserStore {
   loadUsers() {
     this.isLoading.set(true);
     const source = "https://jsonplaceholder.typicode.com/users"
-    $.get(source, function (result) {
-      result.forEach(json => this.createUserFromJson(json));
-      if(this.users.length === 0){
-        this.nextId = 1
-      } else {
-        this.nextId = this.users[this.users.length - 1].id.get() + 1
-      }
-      this.isLoading.set(false);
-    }.bind(this));
+    fetch(source)
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(result) {
+        result.forEach(json => this.createUserFromJson(json));
+        if(this.users.length === 0){
+          this.nextId = 1
+        } else {
+          this.nextId = this.users[this.users.length - 1].id.get() + 1
+        }
+        this.isLoading.set(false);
+      }.bind(this))
   }
   createUserFromJson(json) {
     let user = this.users.find(user => user.id.get() === json.id);
