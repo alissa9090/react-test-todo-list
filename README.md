@@ -16,7 +16,7 @@ $ npm install
 And run development server:
 
 ```
-$ npm run server
+$ npm start
 ```
 
 It’ll open the app in your browser.
