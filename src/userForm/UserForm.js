@@ -4,14 +4,29 @@ import UserAddress from './UserAddress';
 import UserInfo from './UserInfo';
 import UserAddressGeo from './UserAddressGeo';
 import UserCompany from './UserCompany';
-import InputField from '../components/InputField'
 import { withRouter } from 'react-router';
 
 class UserForm extends React.Component {
+  constructor () {
+    super()
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onCancel = this.onCancel.bind(this)
+  }
+  onCancel(e){
+    e.preventDefault()
+    this.props.router.goBack()
+  }
+  onSubmit(e) {
+    e.preventDefault()
+    if(this.props.user.id.get() <= 0){
+     userStore.addUser(this.props.user)
+    }
+    this.props.router.goBack()
+  }
   render(){
-    const {user, onSave} = this.props
+    const {user} = this.props
     return (
-      <form class="form-horizontal user-form">
+      <form className="form-horizontal user-form">
         <fieldset>
           <legend>{user.id.get() > 0 ? "Edit user details" : "Create user"}</legend>
           <UserInfo user={user}/>
@@ -29,8 +44,8 @@ class UserForm extends React.Component {
           </fieldset>
           <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-              <button class="btn btn-default" onClick={this.props.router.goBack}>Cancel</button>
-              <button class="btn btn-primary" onClick={onSave}>Save</button>
+              <button class="btn btn-primary" onClick={this.onSubmit}>Save</button>
+              <button class="btn btn-default" onClick={this.onCancel}>Cancel</button>
             </div>
           </div>
         </fieldset>
@@ -40,9 +55,7 @@ class UserForm extends React.Component {
 }
 
 UserForm.propTypes = {
-  user: React.PropTypes.object.isRequired,
-  onSave: React.PropTypes.func.isRequired
+  user: React.PropTypes.object.isRequired
 }
-
 
 export default withRouter(UserForm)

@@ -2,14 +2,14 @@ import React from 'react'
 import {observer} from 'mobx-react'
 
 @observer
-export default class InputField extends React.Component {
+class Input extends React.Component {
   constructor () {
     super()
     this.onChange = this.onChange.bind(this)
   }
 
   onChange (event) {
-    this.props.onChange(event.target.name, event.target.value)
+    this.props.onChange(event)
   }
 
   render () {
@@ -31,7 +31,7 @@ export default class InputField extends React.Component {
   }
 }
 
-InputField.propTypes = {
+Input.propTypes = {
   label: React.PropTypes.string,
   name: React.PropTypes.string,
   id: React.PropTypes.string,
@@ -40,6 +40,8 @@ InputField.propTypes = {
   onChange: React.PropTypes.func.isRequired
 }
 
-InputField.defaultProps = {
+Input.defaultProps = {
   type: 'text'
 }
+
+export default Input

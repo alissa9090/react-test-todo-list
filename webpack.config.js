@@ -2,11 +2,11 @@ var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 
 module.exports = {
-  context: __dirname + "/TestProject",
+  context: __dirname + "/",
   devtool: debug ? "inline-sourcemap" : null,
-  entry: './main.js',
+  entry: './src/main.js',
   output: {
-    path: __dirname + '/TestProject/',
+    path: __dirname + '/',
     filename: 'index.js'
   },
   devServer: {
@@ -26,13 +26,22 @@ module.exports = {
             'transform-decorators-legacy',
             'transform-decorators']
         }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
       }
     ]
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false})
+  plugins: debug ?
+   [
+     new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/)
+   ] :
+   [
+     new webpack.optimize.DedupePlugin(),
+     new webpack.optimize.OccurenceOrderPlugin(),
+     new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false},
+     new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/))
   ]
 }
 
