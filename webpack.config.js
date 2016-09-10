@@ -1,5 +1,5 @@
 var debug = process.env.NODE_ENV !== "production";
-//var webpack = require('webpack');
+var webpack = require('webpack');
 
 module.exports = {
   context: __dirname + "/",
@@ -36,20 +36,14 @@ module.exports = {
         loaders: ['style', 'css']
       }
     ]
-  }
-
+  },
+  plugins: debug ? [] :
+   [
+     new webpack.optimize.DedupePlugin(),
+     new webpack.optimize.OccurenceOrderPlugin(),
+     new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false})
+  ]
 }
-
-// plugins: debug ?
-//  [
-//    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/)
-//  ] :
-//  [
-//    new webpack.optimize.DedupePlugin(),
-//    new webpack.optimize.OccurenceOrderPlugin(),
-//    new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false},
-//    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/))
-// ]
 
 
 // module.exports = {

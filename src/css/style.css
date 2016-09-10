@@ -55,6 +55,9 @@ body{
   display: inline;
   cursor: pointer;
 }
+.user-tasks, .user-form{
+  margin-top: 10px;
+}
 .user-tasks .btn, .user-list .btn{
   margin-bottom: 5px;
 }
