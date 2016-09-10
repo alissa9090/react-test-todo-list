@@ -1,6 +1,6 @@
 # ToDo List
 
-Try the [deployed app](https://alissa9090.github.io/react-test-todo-list/) or read below hot to run it locally.
+Try the [deployed app](https://alissa9090.github.io/react-test-todo-list/src/) or read below hot to run it locally.
 
 
 ## How to run locally
