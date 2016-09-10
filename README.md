@@ -19,7 +19,7 @@ And run development server:
 $ npm start
 ```
 
-It’ll start the app on http://localhost:3333/.
+It’ll start the app on (http://localhost:3333/).
 
 
 ## What’s inside
