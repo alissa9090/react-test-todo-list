@@ -1,13 +1,13 @@
 var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
+//var webpack = require('webpack');
 
 module.exports = {
   context: __dirname + "/",
   devtool: debug ? "inline-sourcemap" : null,
   entry: './src/main.js',
   output: {
-    path: __dirname + '/build/',
-    filename: 'index.js'
+    path: __dirname + '/src/',
+    filename: 'index.min.js'
   },
   devServer: {
     inline: true,
@@ -20,7 +20,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react', 'stage-1', "stage-0"],
+          presets: ['es2015', 'react', "stage-0"],
           plugins: ['react-html-attrs',
             'transform-class-properties',
             'transform-decorators-legacy',
@@ -36,18 +36,20 @@ module.exports = {
         loaders: ['style', 'css']
       }
     ]
-  },
-  plugins: debug ?
-   [
-     new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/)
-   ] :
-   [
-     new webpack.optimize.DedupePlugin(),
-     new webpack.optimize.OccurenceOrderPlugin(),
-     new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false},
-     new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/))
-  ]
+  }
+
 }
+
+// plugins: debug ?
+//  [
+//    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/)
+//  ] :
+//  [
+//    new webpack.optimize.DedupePlugin(),
+//    new webpack.optimize.OccurenceOrderPlugin(),
+//    new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false},
+//    new webpack.IgnorePlugin(/regenerator|nodent|js\-beautify/, /ajv/))
+// ]
 
 
 // module.exports = {

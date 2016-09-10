@@ -1,11 +1,11 @@
 import React from 'react';
-import Site from './vendor/Site';
+import Site from './Site';
 import {Router, Route, IndexRoute, hashHistory} from "react-router";
-import UserList from './pages/UserList';
-import UserTasks from './pages/UserTasks';
-import UpdateUser from './pages/UpdateUser';
-import userStore from './store/UserStore';
-import taskStore from './store/TaskStore';
+import UserList from '../pages/UserList';
+import UserTasks from '../pages/UserTasks';
+import UpdateUser from '../pages/UpdateUser';
+import userStore from '../store/UserStore';
+import taskStore from '../store/TaskStore';
 
 const App = () => (
   <Router history={hashHistory}>
