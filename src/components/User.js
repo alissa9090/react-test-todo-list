@@ -23,7 +23,7 @@ class User extends React.Component {
           <div className="jumbotron" onClick={this.props.onClick}>
             <div className="user">
               <h3>{user.name.get()}</h3>
-              <img src={user.photoUrl.get()}/>
+              <img height="128" weight="128" src={user.photoUrl.get()}/>
               <h4>{user.company.name.get()}</h4>
               {this.props.showDetails ? this.renderDetails() : ""}
             </div>

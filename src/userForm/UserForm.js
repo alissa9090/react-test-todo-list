@@ -18,29 +18,39 @@ class UserForm extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault()
+    this.props.form.validate()
+      .then(isValid => isValid
+        ? this.onSuccess()
+        : this.onError());
+  }
+  onSuccess(){
     if(this.props.user.id.get() <= 0){
      userStore.addUser(this.props.user)
     }
     this.props.router.goBack()
   }
+  onError(){
+    console.log('All form errors', this.props.form.errors());
+    this.props.form.invalidate('This is a generic error message!');
+  }
   render(){
-    const {user} = this.props
+    const {user, form} = this.props
     return (
       <form className="form-horizontal user-form">
         <fieldset>
           <legend>{user.id.get() > 0 ? "Edit user details" : "Create user"}</legend>
-          <UserInfo user={user}/>
+          <UserInfo user={user} form={form}/>
           <fieldset>
             <legend>Address</legend>
-            <UserAddress address={user.address}/>
+            <UserAddress address={user.address} form={form}/>
               <fieldset>
                 <legend>Geo</legend>
-                <UserAddressGeo geo={user.address.geo}/>
+                <UserAddressGeo geo={user.address.geo} form={form}/>
               </fieldset>
           </fieldset>
           <fieldset>
             <legend>Company</legend>
-            <UserCompany company={user.company}/>
+            <UserCompany company={user.company} form={form}/>
           </fieldset>
           <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">

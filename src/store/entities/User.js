@@ -22,6 +22,49 @@ class User {
     this.company = company
     this.photoUrl.set("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-128.png")
   }
+  getFields(){
+     const userInfoFields = {
+      id: {
+        label: 'Id',
+        value: this.id.get(),
+        default: this.id.get()
+      },
+      name: {
+        label: 'Name',
+        value: this.name.get(),
+        default: this.name.get(),
+        rules: 'required'
+      },
+      username: {
+        label: 'Username',
+        value: this.username.get(),
+        default: this.username.get()
+      },
+      email: {
+        label: 'Email',
+        value: this.email.get(),
+        default: this.email.get()
+      },
+      phone: {
+        label: 'Phone',
+        value: this.phone.get(),
+        default: this.phone.get()
+      },
+      website: {
+        label: 'Website',
+        value: this.website.get(),
+        default: this.website.get()
+      },
+      photoUrl: {
+        label: 'Photo Url',
+        value: this.photoUrl.get(),
+        default: this.photoUrl.get()
+      }
+    }
+    const address = this.address.getFields()
+    const companyFields = this.company.getFields()
+    return Object.assign(userInfoFields, address, companyFields)
+  }
 }
 
 export default User

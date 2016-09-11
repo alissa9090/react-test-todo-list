@@ -4,6 +4,7 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
+    "ajv": "^4.7.0",
     "babel": "^6.5.2",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -25,9 +26,11 @@
     "mobx": "^2.5.1",
     "mobx-react": "^3.5.5",
     "mobx-react-devtools": "^4.2.5",
+    "mobx-react-form": "^1.9.2",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-router": "^2.6.1",
+    "validatorjs": "^3.6.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },

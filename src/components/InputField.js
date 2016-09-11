@@ -25,6 +25,7 @@ class InputField extends React.Component {
             onChange={this.onChange}
             type={input.type}
             value={input.value}/>
+          <i className="validation-error">{input.error}</i>
         </div>
       </div>
     )

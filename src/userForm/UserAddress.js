@@ -6,19 +6,20 @@ import InputField from '../components/InputField'
 @observer
 class UserAddress extends React.Component {
   render () {
-    const {address, updateProperty} = this.props
+    const {form, updateProperty} = this.props
     return (
       <div>
-        <InputField id="address-street" label="Street" name="street" value={address.street.get()} onChange={updateProperty}/>
-        <InputField id="address-suite" label="Suite" name="suite" value={address.suite.get()} onChange={updateProperty}/>
-        <InputField id="address-city" label="City" name="city" value={address.city.get()} onChange={updateProperty}/>
-        <InputField id="address-zipcode" label="Zipcode" name="zipcode" value={address.zipcode.get()} onChange={updateProperty}/>
+        <InputField id="address-street" label={form.$('street').label} name="street" value={form.$('street').value} onChange={updateProperty} error={form.$('street').error}/>
+        <InputField id="address-suite" label={form.$('suite').label} name="suite" value={form.$('suite').value} onChange={updateProperty} error={form.$('suite').error}/>
+        <InputField id="address-city" label={form.$('city').label} name="city" value={form.$('city').value} onChange={updateProperty} error={form.$('city').error}/>
+        <InputField id="address-zipcode" label={form.$('zipcode').label} name="zipcode" value={form.$('zipcode').value} onChange={updateProperty} error={form.$('zipcode').error}/>
       </div>
     )
   }
 }
 
 UserAddress.propTypes = {
+  form: React.PropTypes.object.isRequired,
   address: React.PropTypes.object.isRequired
 }
 

@@ -6,14 +6,15 @@ import InputField from '../components/InputField'
 @observer
 class UserInfo extends React.Component {
   render () {
-    const {user, updateProperty} = this.props
+    const {updateProperty, form} = this.props
     return (
       <div>
-        <InputField id="user-name" label="Name" name="name" value={user.name.get()} onChange={updateProperty}/>
-        <InputField id="user-username" label="Username" name="username" value={user.username.get()} onChange={updateProperty}/>
-        <InputField id="user-email" label="Email" name="email" value={user.email.get()} onChange={updateProperty}/>
-        <InputField id="user-phone" label="Phone" name="phone" value={user.phone.get()} onChange={updateProperty}/>
-        <InputField id="user-website" label="Website" name="website" value={user.website.get()} onChange={updateProperty}/>
+        <InputField id="user-name" label={form.$('name').label} name="name" value={form.$('name').value} onChange={updateProperty} error={form.$('name').error}/>
+        <InputField id="user-username" label={form.$('username').label} name="username" value={form.$('username').value} onChange={updateProperty} error={form.$('username').error}/>
+        <InputField id="user-email" label={form.$('email').label} name="email" value={form.$('email').value} onChange={updateProperty} error={form.$('email').error}/>
+        <InputField id="user-phone" label={form.$('phone').label} name="phone" value={form.$('phone').value} onChange={updateProperty} error={form.$('phone').error}/>
+        <InputField id="user-website" label={form.$('website').label} name="website" value={form.$('website').value} onChange={updateProperty} error={form.$('website').error}/>
+        <InputField id="user-photo-url" label={form.$('photoUrl').label} name="photoUrl" value={form.$('photoUrl').value} onChange={updateProperty} error={form.$('photoUrl').error}/>
       </div>
     )
   }
@@ -21,6 +22,7 @@ class UserInfo extends React.Component {
 
 UserInfo.propTypes = {
   user: React.PropTypes.object.isRequired,
+  form: React.PropTypes.object.isRequired,
   updateProperty: React.PropTypes.func.isRequired
 }
 

@@ -6,17 +6,18 @@ import InputField from '../components/InputField'
 @observer
 class UserAddressGeo extends React.Component {
   render () {
-    const {geo, updateProperty} = this.props
+    const {form, updateProperty} = this.props
     return (
       <div>
-        <InputField id="address-geo-lat" label="Lat" name="lat" value={geo.lat.get()} onChange={updateProperty}/>
-        <InputField id="address-geo-lng" label="Lng" name="lng" value={geo.lng.get()} onChange={updateProperty}/>
+        <InputField id="address-geo-lat" label={form.$('lat').label} name="lat" value={form.$('lat').value} onChange={updateProperty} error={form.$('lat').error}/>
+        <InputField id="address-geo-lng" label={form.$('lng').label} name="lng" value={form.$('lng').value} onChange={updateProperty} error={form.$('lng').error}/>
       </div>
     )
   }
 }
 
 UserAddressGeo.propTypes = {
+  form: React.PropTypes.object.isRequired,
   geo: React.PropTypes.object.isRequired
 }
 

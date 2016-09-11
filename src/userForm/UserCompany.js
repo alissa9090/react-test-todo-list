@@ -6,19 +6,20 @@ import InputField from '../components/InputField'
 @observer
 class UserCompany extends React.Component {
   render () {
-    const {company, updateProperty} = this.props
+    const {form, updateProperty} = this.props
     return (
       <div>
-        <InputField id="company-name" label="Name" name="name" value={company.name.get()} onChange={updateProperty}/>
-        <InputField id="company-catchPhrase" label="Catch Phrase" name="catchPhrase" value={company.catchPhrase.get()} onChange={updateProperty}/>
-        <InputField id="company-bs" label="Bs" name="bs" value={company.bs.get()} onChange={updateProperty}/>
+        <InputField id="company-name" label={form.$('companyName').label} name="name" value={form.$('companyName').value} onChange={updateProperty} error={form.$('companyName').error}/>
+        <InputField id="company-catchPhrase" label={form.$('catchPhrase').label} name="catchPhrase" value={form.$('catchPhrase').value} onChange={updateProperty} error={form.$('catchPhrase').error}/>
+        <InputField id="company-bs" label={form.$('bs').label} name="bs" value={form.$('bs').value} onChange={updateProperty} error={form.$('bs').error}/>
       </div>
     )
   }
 }
 
 UserCompany.propTypes = {
-  company: React.PropTypes.object.isRequired
+  company: React.PropTypes.object.isRequired,
+  form: React.PropTypes.object.isRequired
 }
 
 export default asForm(UserCompany, 'company')
