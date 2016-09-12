@@ -28,6 +28,7 @@ It’ll start the app on [http://localhost:3333/](http://localhost:3333/).
 
 * [React](http://facebook.github.io/react/).
 * [mobx-react] (https://github.com/mobxjs/mobx-react/).
+* [bootstrap] (https://react-bootstrap.github.io/).
 
 ### Styles
 
