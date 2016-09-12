@@ -23,17 +23,11 @@ class User extends React.Component {
           <div className="jumbotron" onClick={this.props.onClick}>
             <div className="user">
               <h3>{user.name.get()}</h3>
-              <img height="128" weight="128" src={user.photoUrl.get()}/>
+              <img height="128" width="128" src={user.photoUrl.get()}/>
               <h4>{user.company.name.get()}</h4>
               {this.props.showDetails ? this.renderDetails() : ""}
             </div>
-          </div>
-          <Link to={`updateUser/${user.id.get()}`} className="edit">
-            <img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/edit_property.png"/>
-          </Link>
-          <Link to="/" className="remove" onClick={this.props.onDelete}>
-            <img src="https://cdn1.iconfinder.com/data/icons/toolbar-signs/512/trash-128.png"/>
-          </Link>
+          </div>          
         </div>
         <div className="clearFloats"></div>
       </div>

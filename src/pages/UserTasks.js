@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from '../components/Task';
 import User from '../components/User';
-import {Link} from 'react-router';
+import {Link, withRouter} from 'react-router';
 import { observer } from 'mobx-react';
 
 @observer
@@ -25,23 +25,27 @@ class UserTasks extends React.Component {
     const user = userStore.getById(userId)
     taskStore.userIdFilter = userId
     return(
-      <div className="user-tasks">
-        <Link to="/" className="btn btn-primary">Choose a new user</Link>
+      <div class="user-tasks">
+        <div class="page-header">
+          <h1>Tasks</h1>
+        </div>
+        <div className="main">
           <User key={user.id.get()}
-          showDetails={true}
-          editable={true}
-          user={user}
-          onDelete={()=>userStore.removeUser(user)} />
-        <input type="text"
-          className="create-task"
-          onKeyUp={this.createTask.bind(this)}></input>
-        {taskStore.tasksFilteredByUser.map(task => <Task
-          key={task.id.get()}
-          onDelete={this.removeTask.bind(this, task)}
-          task={task} /> )}
-      </div>
+            showDetails={true}
+            editable={true}
+            user={user}/>
+          <input type="text"
+            className="create-task"
+            onKeyUp={this.createTask.bind(this)}></input>
+          {taskStore.tasksFilteredByUser.map(task => <Task
+            key={task.id.get()}
+            onDelete={this.removeTask.bind(this, task)}
+            task={task} /> )}
+          <button class="btn btn-default" onClick={this.props.router.goBack}>Go back</button>
+        </div>
+      </div>     
     )
   }
 }
 
-export default UserTasks
+export default withRouter(UserTasks)

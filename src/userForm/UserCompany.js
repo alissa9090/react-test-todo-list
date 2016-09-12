@@ -6,12 +6,12 @@ import InputField from '../components/InputField'
 @observer
 class UserCompany extends React.Component {
   render () {
-    const {form, updateProperty} = this.props
+    const {form, updateProperty, mode} = this.props
     return (
       <div>
-        <InputField id="company-name" label={form.$('companyName').label} name="name" value={form.$('companyName').value} onChange={updateProperty} error={form.$('companyName').error}/>
-        <InputField id="company-catchPhrase" label={form.$('catchPhrase').label} name="catchPhrase" value={form.$('catchPhrase').value} onChange={updateProperty} error={form.$('catchPhrase').error}/>
-        <InputField id="company-bs" label={form.$('bs').label} name="bs" value={form.$('bs').value} onChange={updateProperty} error={form.$('bs').error}/>
+        <InputField id="company-name" label={form.$('companyName').label} name="name" value={form.$('companyName').value} onChange={updateProperty} error={form.$('companyName').error} mode={mode}/>
+        <InputField id="company-catchPhrase" label={form.$('catchPhrase').label} name="catchPhrase" value={form.$('catchPhrase').value} onChange={updateProperty} error={form.$('catchPhrase').error} mode={mode}/>
+        <InputField id="company-bs" label={form.$('bs').label} name="bs" value={form.$('bs').value} onChange={updateProperty} error={form.$('bs').error} mode={mode}/>
       </div>
     )
   }
@@ -19,7 +19,8 @@ class UserCompany extends React.Component {
 
 UserCompany.propTypes = {
   company: React.PropTypes.object.isRequired,
-  form: React.PropTypes.object.isRequired
+  form: React.PropTypes.object.isRequired,
+  mode: React.PropTypes.oneOf(['create', 'edit', 'view']).isRequired
 }
 
 export default asForm(UserCompany, 'company')

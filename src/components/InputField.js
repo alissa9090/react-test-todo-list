@@ -1,5 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
+import { FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap';
 
 @observer
 class InputField extends React.Component {
@@ -14,20 +15,30 @@ class InputField extends React.Component {
 
   render () {
     const input = this.props
+    const {mode} = this.props
+    let formControl = ""
+    if(mode === 'view'){
+      formControl = <FormControl.Static>
+                      {input.value}
+                    </FormControl.Static>
+    } else {
+      formControl = <FormControl
+        type={input.type}
+        name={input.name}
+        onChange={this.onChange}
+        placeholder={input.name}
+        value={input.value} />
+    }
     return (
-      <div class="form-group">
-        <label htmlFor={input.id} class="col-lg-2 control-label">{input.label || input.name}</label>
-        <div class="col-lg-10">
-        <input
-            className="form-control"
-            id={input.id}
-            name={input.name}
-            onChange={this.onChange}
-            type={input.type}
-            value={input.value}/>
+      <FormGroup controlId={input.id}>
+        <Col componentClass={ControlLabel} sm={2}>
+          {input.label}:
+        </Col>
+        <Col sm={10}>
+          {formControl}
           <i className="validation-error">{input.error}</i>
-        </div>
-      </div>
+        </Col>
+      </FormGroup>
     )
   }
 }
@@ -42,7 +53,8 @@ InputField.propTypes = {
 }
 
 InputField.defaultProps = {
-  type: 'text'
+  type: 'text',
+  mode: React.PropTypes.oneOf(['create', 'edit', 'view']).isRequired
 }
 
 export default InputField

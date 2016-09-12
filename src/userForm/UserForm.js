@@ -5,8 +5,14 @@ import UserInfo from './UserInfo';
 import UserAddressGeo from './UserAddressGeo';
 import UserCompany from './UserCompany';
 import { withRouter } from 'react-router';
+import { Form } from 'react-bootstrap';
 
 class UserForm extends React.Component {
+  titles = {
+    create: "Create new User",
+    edit: "Edit User Details",
+    view: "User Details"
+  }
   constructor () {
     super()
     this.onSubmit = this.onSubmit.bind(this)
@@ -14,7 +20,9 @@ class UserForm extends React.Component {
   }
   onCancel(e){
     e.preventDefault()
-    userStore.loadUser(this.props.user.id.get())
+    if(this.props.user.id.get() > 0){
+      userStore.loadUser(this.props.user.id.get())
+    }
     this.props.router.goBack()
   }
   onSubmit(e) {
@@ -36,37 +44,41 @@ class UserForm extends React.Component {
   }
   render(){
     const {user, form} = this.props
+    let {mode} = this.props
+    if(user.id.get() <= 0){
+      mode = "create"
+    }
     return (
-      <form className="form-horizontal user-form">
+      <div>
+      <Form horizontal className="user-form main">
         <fieldset>
-          <legend>{user.id.get() > 0 ? "Edit user details" : "Create user"}</legend>
-          <UserInfo user={user} form={form}/>
+          <legend>{this.titles[mode]}</legend>
+          <UserInfo user={user} form={form} mode={mode}/>
           <fieldset>
             <legend>Address</legend>
-            <UserAddress address={user.address} form={form}/>
+            <UserAddress address={user.address} form={form} mode={mode}/>
               <fieldset>
                 <legend>Geo</legend>
-                <UserAddressGeo geo={user.address.geo} form={form}/>
+                <UserAddressGeo geo={user.address.geo} form={form} mode={mode}/>
               </fieldset>
           </fieldset>
           <fieldset>
             <legend>Company</legend>
-            <UserCompany company={user.company} form={form}/>
+            <UserCompany company={user.company} form={form} mode={mode}/>
           </fieldset>
-          <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-              <button class="btn btn-primary" onClick={this.onSubmit}>Save</button>
-              <button class="btn btn-default" onClick={this.onCancel}>Cancel</button>
-            </div>
-          </div>
         </fieldset>
-      </form>
+      </Form>
+      <button class={`btn btn-primary ${mode === "view" ? "hidden" : ""}`} onClick={this.onSubmit}>Save</button>
+      <button class="btn btn-default" onClick={this.onCancel}>{mode === "view" ? "Go back" : "Cancel"}</button>        
+    </div>
     )
   }
 }
 
 UserForm.propTypes = {
-  user: React.PropTypes.object.isRequired
+  user: React.PropTypes.object.isRequired,
+  form: React.PropTypes.object.isRequired,
+  mode: React.PropTypes.oneOf(['create', 'edit', 'view']).isRequired
 }
 
 export default withRouter(UserForm)

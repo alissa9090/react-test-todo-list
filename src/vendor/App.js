@@ -12,9 +12,8 @@ const App = () => (
     <Route path="/" component={Site}>
       <IndexRoute component={UserList}/>
       <Route path="userTasks/:userId" component={UserTasks} />
-      <Route path="updateUser(/:userId)" component={UpdateUser} />
+      <Route path="updateUser/:mode(/:userId)" component={UpdateUser} />
     </Route>
-
   </Router>
 )
 

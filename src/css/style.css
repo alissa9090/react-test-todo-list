@@ -1,6 +1,25 @@
 body{
   margin: 10;
   padding: 0;
+  background: #f5f5f5 !important;
+  color: #4d4d4d !important;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+.container{
+  margin-bottom: 20px;
+}
+.container .main{
+  padding: 20px;
+  background: #fff;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+.user-list .actions{
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .user-container{
   width: 700px;
@@ -58,19 +77,37 @@ body{
 .user-tasks, .user-form{
   margin-top: 10px;
 }
-.user-tasks .btn, .user-list .btn{
-  margin-bottom: 5px;
-}
 .clearFloats{
   clear: both;
 }
-.user-form .btn{
-  width: 80px;
+.container .btn{
+  width: 90px;
   margin-right: 10px;
+  margin-top: 10px;
 }
 .user-form .validation-error{
   color: red;
 }
 .user-tasks .create-task{
   margin-bottom: 10px;
+}
+.actions-panel{
+  font-size: 20px;
+}
+.actions-panel .glyphicon{
+  margin: 3px;
+  color: #4d4d4d;
+  cursor: pointer;
+}
+.actions-panel .glyphicon:hover{
+  color: #4d4d4d;
+  text-decoration: none;
+}
+.update-user{
+  position: relative;
+}
+.update-user .actions-panel{
+  position: absolute;
+  right: 0;
+  top: 15px;
 }
