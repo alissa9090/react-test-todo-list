@@ -45,8 +45,14 @@ class UpdateUser extends React.Component {
         package: ajv
       }
     }
+    const schema = {
+      type: 'object',
+      properties: {
+        email: { type: 'string', format: 'email', minLength: 5, maxLength: 20 }
+      }
+    }
     const fields = this.user.getFields()
-    const form = new Form({ plugins, fields })
+    const form = new Form({ plugins, schema, fields })
     return(
       <div class="update-user">
         <div class="page-header">

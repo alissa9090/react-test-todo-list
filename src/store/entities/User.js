@@ -49,12 +49,14 @@ class User {
       username: {
         label: 'Username',
         value: this.username.get(),
-        default: this.username.get()
+        default: this.username.get(),
+        rules: 'required'
       },
       email: {
         label: 'Email',
         value: this.email.get(),
-        default: this.email.get()
+        default: this.email.get(),
+        rules: 'required'
       },
       phone: {
         label: 'Phone',

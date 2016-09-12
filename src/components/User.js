@@ -1,3 +1,4 @@
+//deprecated
 import React from 'react';
 import {Link} from 'react-router';
 
@@ -27,7 +28,7 @@ class User extends React.Component {
               <h4>{user.company.name.get()}</h4>
               {this.props.showDetails ? this.renderDetails() : ""}
             </div>
-          </div>          
+          </div>
         </div>
         <div className="clearFloats"></div>
       </div>
@@ -84,7 +85,7 @@ class User extends React.Component {
 
 User.propTypes = {
   user: React.PropTypes.object.isRequired,
-  onDelete: React.PropTypes.func.isRequired,
+  onDelete: React.PropTypes.func,
   onClick: React.PropTypes.func,
   showDetails: React.PropTypes.bool
 }

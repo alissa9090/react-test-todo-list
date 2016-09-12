@@ -39,11 +39,12 @@ class UserList extends React.Component {
         <div class="page-header">
           <h1>Users</h1>
         </div>
+        <Link to="updateUser/create" className="btn btn-primary new-user">New User</Link>
         <div className="main user-list">
           <table class="table  table-hover">
             <tbody>
             {userStore.users.map(user => <tr key={user.id.get()}>
-                <td><img height="80" width="80" src={user.photoUrl.get()}/></td>
+                <td><img height="80" src={user.photoUrl.get()}/></td>
                 <td><h3>{user.name.get()}</h3></td>
                 <td>
                   <DropdownButton title="Actions" id="bg-vertical-dropdown-1" className="actions">
@@ -57,8 +58,6 @@ class UserList extends React.Component {
             </tbody>
           </table>
         </div>
-        <Link to="updateUser/create" className="btn btn-primary">New User</Link>
-        <br/>
       </div>
     )
   }

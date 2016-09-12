@@ -1,4 +1,5 @@
 import React from 'react';
+import { Checkbox } from 'react-bootstrap';
 
 class Task extends React.Component {
   toogleComplete(e){
@@ -8,15 +9,13 @@ class Task extends React.Component {
     const task = this.props.task
     return (
       <div className="task">
-        <input className="completed"
-          type="checkbox"
+        <Checkbox
           defaultChecked={task.completed.get()}
-          value={task.completed.get()}
-          onChange={this.toogleComplete.bind(this)}/>
-        <label className="title">{task.title.get()}</label>
-        <img className="remove"
-          src="http://findicons.com/files/icons/2139/uidesign/16/delete.png"
-          onClick={this.props.onDelete} />
+          onChange={this.toogleComplete.bind(this)}
+          class="task-check-box">
+          {task.title.get()}
+        </Checkbox>
+        <span title="Delete" class="glyphicon glyphicon-trash remove-task" onClick={this.props.onDelete}></span>
       </div>
     )
   }

@@ -67,12 +67,18 @@ body{
 .task .completed{
   cursor: pointer;
 }
-.task .remove{
+.task .task-check-box{
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.task .remove-task{
   display: none;
 }
-.task:hover .remove{
+.task:hover .remove-task{
   display: inline;
   cursor: pointer;
+  margin-left: 5px;
 }
 .user-tasks, .user-form{
   margin-top: 10px;
@@ -110,4 +116,8 @@ body{
   position: absolute;
   right: 0;
   top: 15px;
+}
+.container .new-user{
+  margin-top: 0;
+  margin-bottom: 10px;
 }

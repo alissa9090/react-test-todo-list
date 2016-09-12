@@ -20,8 +20,7 @@ class Company {
       companyName: {
         label: 'Name',
         value: this.name.get(),
-        default: this.name.get(),
-        rules: 'required'
+        default: this.name.get()
       },
       catchPhrase: {
         label: 'Catch Phrase',
