@@ -16,10 +16,12 @@ class UpdateUser extends React.Component {
   }
   removeUser(e){
     e.preventDefault();
-    if(this.user.id.get()>0){
-      userStore.removeUser(this.user)
+    if(confirm("Are you sure?")){
+      if(this.user.id.get()>0){
+        userStore.removeUser(this.user)
+      }
+      this.props.router.push("/")
     }
-    this.props.router.push("/")
   }
   componentWillMount(){
     this.user = userStore.getNewUser()

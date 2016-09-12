@@ -15,7 +15,9 @@ class UserList extends React.Component {
   }
   removeUser(user, e){
     e.preventDefault();
-    userStore.removeUser(user)
+    if(confirm("Are you sure?")){
+      userStore.removeUser(user)
+    }    
   }
   goToTasks(userId, e){
     e.preventDefault();
