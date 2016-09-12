@@ -19,7 +19,7 @@ class UpdateUser extends React.Component {
     if(this.user.id.get()>0){
       userStore.removeUser(this.user)
     }
-    this.props.router.goBack()
+    this.props.router.push("/")
   }
   componentWillMount(){
     this.user = userStore.getNewUser()
