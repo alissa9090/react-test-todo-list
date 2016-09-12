@@ -30,8 +30,20 @@ class UserStore {
         this.isLoading.set(false);
       }.bind(this))
   }
+  loadUser(id) {
+    this.isLoading.set(true);
+    const source = `https://jsonplaceholder.typicode.com/users?id=${id}`
+    fetch(source)
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(result) {
+        result.forEach(json => this.updateUserFromJson(json));
+        this.isLoading.set(false);
+      }.bind(this))
+  }
   createUserFromJson(json) {
-    let user = this.users.find(user => user.id.get() === json.id);
+    let user = this.getById(json.id);
     if (!user) {
       user = new User(
         json.id,
@@ -53,6 +65,12 @@ class UserStore {
           json.company.catchPhrase,
           json.company.bs));
       this.users.push(user);
+    }
+  }
+  updateUserFromJson(json) {
+    let user = this.getById(json.id);
+    if (user) {
+      user.updateFromJson(json)
     }
   }
   getNewUser(){

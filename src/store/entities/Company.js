@@ -10,6 +10,11 @@ class Company {
     this.catchPhrase.set(catchPhrase)
     this.bs.set(bs)
   }
+  updateFromJson(json){
+    this.name.set(json.name)
+    this.catchPhrase.set(json.catchPhrase)
+    this.bs.set(json.bs)
+  }
   getFields(){
     return {
       companyName: {

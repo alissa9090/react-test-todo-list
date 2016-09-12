@@ -22,6 +22,17 @@ class User {
     this.company = company
     this.photoUrl.set("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-128.png")
   }
+  updateFromJson(json){
+    this.id.set(json.id)
+    this.name.set(json.name)
+    this.username.set(json.username)
+    this.email.set(json.email)
+    this.address.updateFromJson(json.address)
+    this.phone.set(json.phone)
+    this.website.set(json.website)
+    this.company.updateFromJson(json.company)
+    this.photoUrl.set("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-128.png")
+  }
   getFields(){
      const userInfoFields = {
       id: {

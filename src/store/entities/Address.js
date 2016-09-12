@@ -14,6 +14,13 @@ class Address {
     this.zipcode.set(zipcode)
     this.geo = geo
   }
+  updateFromJson(json){
+    this.street.set(json.street)
+    this.suite.set(json.suite)
+    this.city.set(json.city)
+    this.zipcode.set(json.zipcode)
+    this.geo.updateFromJson(json.geo)
+  }
   getFields(){
     const addressFields = {
       street: {

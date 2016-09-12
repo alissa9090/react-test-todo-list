@@ -2,7 +2,6 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import UserForm from '../userForm/UserForm';
 import { observable } from "mobx"
-//import form from '../userForm/Form';
 import ajv from 'ajv';
 import validatorjs from 'validatorjs';
 import Form from 'mobx-react-form';

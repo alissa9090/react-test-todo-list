@@ -8,6 +8,10 @@ class Geo {
     this.lat.set(lat)
     this.lng.set(lng)
   }
+  updateFromJson(json){
+    this.lat.set(json.lat)
+    this.lng.set(json.lng)
+  }
   getFields(){
     return {
       lat: {

@@ -14,6 +14,7 @@ class UserForm extends React.Component {
   }
   onCancel(e){
     e.preventDefault()
+    userStore.loadUser(this.props.user.id.get())
     this.props.router.goBack()
   }
   onSubmit(e) {
