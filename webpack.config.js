@@ -1,13 +1,16 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   context: __dirname + "/",
   devtool: debug ? "inline-sourcemap" : null,
-  entry: './src/main.js',
+  entry: "./src/main.js",
+  resolve: {
+    modulesDirectories: ['node_modules', path.resolve('.', 'node_modules')]
+  },
   output: {
-    path: __dirname + '/src/',
-    filename: 'index.min.js'
+    filename: './build/index.min.js'
   },
   devServer: {
     inline: true,
@@ -20,11 +23,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react', "stage-0"],
-          plugins: ['react-html-attrs',
-            'transform-class-properties',
-            'transform-decorators-legacy',
-            'transform-decorators']
+          presets: ['es2015', 'react', 'stage-0'],
+          plugins: ["transform-decorators-legacy"]
         }
       },
       {
@@ -37,7 +37,8 @@ module.exports = {
       }
     ]
   },
-  plugins: debug ? [] :
+  plugins: debug ?
+   [] :
    [
      new webpack.DefinePlugin({
        "process.env": {
@@ -49,28 +50,3 @@ module.exports = {
      new webpack.optimize.UglifyJsPlugin({mangle: false, sourcemap: false})
   ]
 }
-
-
-// module.exports = {
-//   entry: './main.js',
-//   output: {
-//     path: './',
-//     filename: 'index.js'
-//   },
-//   devServer: {
-//     inline: true,
-//     port: 3333
-//   },
-//   module: {
-//     loaders: [
-//       {
-//         test: /\.js$/,
-//         exclude: /node_modules/,
-//         loader: 'babel',
-//         query: {
-//           presets: ['es2015', 'react']
-//         }
-//       }
-//     ]
-//   }
-// }
