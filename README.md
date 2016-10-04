@@ -1,6 +1,6 @@
 # ToDo List
 
-Try the [deployed app](https://alissa9090.github.io/react-test-todo-list/src/) or read below how to run it locally.
+Try the [deployed app](https://alissa9090.github.io/react-test-todo-list/) or read below how to run it locally.
 
 
 ## How to run locally
@@ -28,6 +28,7 @@ It’ll start the app on [http://localhost:3333/](http://localhost:3333/).
 
 * [React](http://facebook.github.io/react/).
 * [mobx-react] (https://github.com/mobxjs/mobx-react/).
+* [mobx-react-form] (https://github.com/foxhound87/mobx-react-form/).
 * [bootstrap] (https://react-bootstrap.github.io/).
 
 ### Styles
