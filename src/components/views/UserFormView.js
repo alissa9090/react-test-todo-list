@@ -18,6 +18,9 @@ class UserFormView extends React.Component {
     this.userStore = new UserStore(userApi)
     this.onSubmit = this.onSubmit.bind(this)
   }
+  componentWillMount(){
+    form.clear()
+  }
   onSubmit(e) {
     e.preventDefault()
     return form.validate()
@@ -31,7 +34,6 @@ class UserFormView extends React.Component {
     const values = form.values()
     this.user.updateFromFlatJson(values)
     return this.user.save().then(()=>{
-      form.clear()
       return true
     })
   }
@@ -43,11 +45,11 @@ class UserFormView extends React.Component {
     const userId = parseInt(this.props.params.userId)
     if(userId){
       this.userStore.loadUser(userId).then(()=>{
-        this.user = this.userStore.users[0]
+        this.user = this.userStore.resolveUser(userId)
         form.update(this.user.asFlatJson)
       })
     } else {
-      this.user = this.userStore.createUser()
+      this.user = this.userStore.createUser()      
     }
   }
   render(){
