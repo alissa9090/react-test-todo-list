@@ -58,29 +58,29 @@ body{
   float: right;
   margin-bottom: 5px;
 }
-.task{
+.{
   width: 500px;
 }
-.task .title{
+.todo .title{
   margin: 5px;
 }
-.task .completed{
+.todo .completed{
   cursor: pointer;
 }
-.task .task-check-box{
+.todo .todo-check-box{
   display: inline-block;
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.task .remove-task{
+.todo .remove-todo{
   display: none;
 }
-.task:hover .remove-task{
+.todo:hover .remove-todo{
   display: inline;
   cursor: pointer;
   margin-left: 5px;
 }
-.user-tasks, .user-form{
+.user-todos, .user-form{
   margin-top: 10px;
 }
 .clearFloats{
@@ -94,7 +94,7 @@ body{
 .user-form .validation-error{
   color: red;
 }
-.user-tasks .create-task{
+.user-todos .create-todo{
   margin-bottom: 10px;
 }
 .actions-panel{
@@ -121,11 +121,6 @@ body{
   margin-top: 0;
   margin-bottom: 10px;
 }
-
-
-
-
-
 
 .example-enter {
   opacity: 0.01;
